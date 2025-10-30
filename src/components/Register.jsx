@@ -20,12 +20,12 @@ function Register() {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post("http://localhost:8000/api/registerUser", formData)
+      .post("https://youtube-clone-backend-58sd.onrender.com/api/registerUser", formData)
       .then((res) => {
         alert(res.data.message);
 
         // Auto-login after registration
-        axios.post("http://localhost:8000/api/loginUser", {
+        axios.post("https://youtube-clone-backend-58sd.onrender.com/api/loginUser", {
           email: formData.email,
           password: formData.password,
         })
