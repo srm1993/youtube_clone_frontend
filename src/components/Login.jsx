@@ -31,7 +31,7 @@ function Login({ setIsLoggedIn, setRole }) {
     setError("");
 
     axios
-      .post("http://localhost:8000/api/loginUser", formData)
+      .post("https://youtube-clone-backend-58sd.onrender.com/api/loginUser", formData)
       .then((res) => {
         setToken(res.data.token);
         localStorage.setItem("token", res.data.token);
