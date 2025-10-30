@@ -9,7 +9,7 @@ function Creator() {
   useEffect(() => {
     const user=JSON.parse(localStorage.getItem("user"));
     axios
-      .get("http://localhost:8000/api/getVideoByUserId/"+user._id,{
+      .get("https://youtube-clone-backend-58sd.onrender.com/api/getVideoByUserId/"+user._id,{
                 headers: { Authorization: token }
             })
       .then((response) => {
@@ -27,7 +27,7 @@ function Creator() {
 
   const handleLike = async (id) => {
     try {
-      await axios.put(`http://localhost:8000/api/likeVideo/${id}`, {
+      await axios.put(`https://youtube-clone-backend-58sd.onrender.com/api/likeVideo/${id}`, {
         userId: "dummyUser",headers:{Authorization:token}
       });
       setVideos((prev) =>
@@ -42,7 +42,7 @@ function Creator() {
 
   const handleDislike = async (id) => {
     try {
-      await axios.put(`http://localhost:8000/api/dislikeVideo/${id}`, {
+      await axios.put(`https://youtube-clone-backend-58sd.onrender.com/api/dislikeVideo/${id}`, {
         userId: "dummyUser",headers:{Authorization:token}
       });
       setVideos((prev) =>
@@ -67,7 +67,7 @@ function Creator() {
   const handleCommentSubmit = async (id) => {
     if (!comments[id] || comments[id].trim() === "") return;
     try {
-      await axios.post(`http://localhost:8000/api/commentVideo/${id}`, {
+      await axios.post(`https://youtube-clone-backend-58sd.onrender.com/api/commentVideo/${id}`, {
         text: comments[id],
         userId: "dummyUser",
         headers:{Authorization:token}
@@ -106,14 +106,14 @@ function Creator() {
                   <img
                     src={
                       video.thumbnailUrl
-                        ? `http://localhost:8000/${video.thumbnailUrl}`
+                        ? `https://youtube-clone-backend-58sd.onrender.com/${video.thumbnailUrl}`
                         : "https://via.placeholder.com/300x200?text=No+Thumbnail"
                     }
                     alt={video.title}
                   />
                   {video.videoUrl && (
                     <video
-                      src={`http://localhost:8000/${video.videoUrl}`}
+                      src={`https://youtube-clone-backend-58sd.onrender.com/${video.videoUrl}`}
                       muted
                       loop
                       preload="metadata"
