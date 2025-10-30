@@ -86,7 +86,7 @@ function UploadVideo() {
       data.append("createdAt", new Date().toISOString());
       data.append("updatedAt", new Date().toISOString());
 
-      await axios.post("http://localhost:8000/api/uploadVideo", data, {
+      await axios.post("https://youtube-clone-backend-58sd.onrender.com/api/uploadVideo", data, {
         headers: { "Content-Type": "multipart/form-data",Authorization:token },
         onUploadProgress: (progressEvent) => {
           const percent = Math.round((progressEvent.loaded * 100) / progressEvent.total);
