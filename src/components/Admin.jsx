@@ -14,7 +14,7 @@ function Admin() {
   // Fetch all videos
   const fetchVideos = async () => {
     try {
-      const response = await axios.get("http://localhost:8000/api/getAllVideos",{
+      const response = await axios.get("https://youtube-clone-backend-58sd.onrender.com/api/getAllVideos",{
                 headers: { Authorization: token }
             });
       setVideos(Array.isArray(response.data) ? response.data : []);
@@ -24,7 +24,7 @@ function Admin() {
   };
   const handleDelete=async (id)=>{
     try{
-      await axios.delete(`http://localhost:8000/api/deleteVideo/${id}`,{
+      await axios.delete(`https://youtube-clone-backend-58sd.onrender.com/api/deleteVideo/${id}`,{
                 headers: { Authorization: token }
             })
       .then(res=>{
@@ -57,10 +57,10 @@ function Admin() {
                   <div className="video-wrapper">
                     {video.videoUrl ? (
                       <video
-                        src={`http://localhost:8000/${video.videoUrl}`}
+                        src={`https://youtube-clone-backend-58sd.onrender.com/${video.videoUrl}`}
                         poster={
                           video.thumbnailUrl
-                            ? `http://localhost:8000/${video.thumbnailUrl}`
+                            ? `https://youtube-clone-backend-58sd.onrender.com/${video.thumbnailUrl}`
                             : "https://via.placeholder.com/300x200?text=No+Thumbnail"
                         }
                         controls
@@ -69,7 +69,7 @@ function Admin() {
                       <img
                         src={
                           video.thumbnailUrl
-                            ? `http://localhost:8000/${video.thumbnailUrl}`
+                            ? `https://youtube-clone-backend-58sd.onrender.com/${video.thumbnailUrl}`
                             : "https://via.placeholder.com/300x200?text=No+Thumbnail"
                         }
                         alt={video.title}
