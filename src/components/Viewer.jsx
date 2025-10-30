@@ -18,7 +18,7 @@ function Viewer() {
   // Fetch all videos
   const fetchVideos = async () => {
     try {
-      const response = await axios.get("http://localhost:8000/api/getAllVideos", {
+      const response = await axios.get("https://youtube-clone-backend-58sd.onrender.com/api/getAllVideos", {
         headers: { Authorization: token }
       });
       setVideos(Array.isArray(response.data) ? response.data : []);
@@ -30,7 +30,7 @@ function Viewer() {
   // Fetch subscriptions for current user
   const fetchSubscriptions = async (userId) => {
     try {
-      const res = await axios.get(`http://localhost:8000/api/getSubscriptions/${userId}`, {
+      const res = await axios.get(`https://youtube-clone-backend-58sd.onrender.com/api/getSubscriptions/${userId}`, {
         headers: { Authorization: token }
       });
       setSubscriptions(res.data.subscribedTo || []);
@@ -49,7 +49,7 @@ function Viewer() {
     try {
       if (subscriptions.includes(uploaderId)) {
         // Unsubscribe
-        await axios.post(`http://localhost:8000/api/unsubscribe/${uploaderId}`, {
+        await axios.post(`https://youtube-clone-backend-58sd.onrender.com/api/unsubscribe/${uploaderId}`, {
           userId: user._id,
         }, {
           headers: { Authorization: token }
@@ -57,7 +57,7 @@ function Viewer() {
         setSubscriptions((prev) => prev.filter((id) => id !== uploaderId));
       } else {
         // Subscribe
-        await axios.post(`http://localhost:8000/api/subscribe/${uploaderId}`, {
+        await axios.post(`https://youtube-clone-backend-58sd.onrender.com/api/subscribe/${uploaderId}`, {
           userId: user._id,
         }, {
           headers: { Authorization: token }
@@ -72,7 +72,7 @@ function Viewer() {
   // Like video
   const handleLike = async (id) => {
     try {
-      await axios.put(`http://localhost:8000/api/likeVideo/${id}`, { userId: user._id },{
+      await axios.put(`https://youtube-clone-backend-58sd.onrender.com/api/likeVideo/${id}`, { userId: user._id },{
                 headers: { Authorization: token }
             });
       fetchVideos();
@@ -84,7 +84,7 @@ function Viewer() {
   // Dislike video
   const handleDislike = async (id) => {
     try {
-      await axios.put(`http://localhost:8000/api/dislikeVideo/${id}`, { userId: user._id },{
+      await axios.put(`https://youtube-clone-backend-58sd.onrender.com/api/dislikeVideo/${id}`, { userId: user._id },{
                 headers: { Authorization: token }
             });
       fetchVideos();
@@ -102,7 +102,7 @@ function Viewer() {
   const handleCommentSubmit = async (id) => {
     if (!comments[id] || comments[id].trim() === "") return;
     try {
-      await axios.post(`http://localhost:8000/api/commentVideo/${id}`, {
+      await axios.post(`https://youtube-clone-backend-58sd.onrender.com/api/commentVideo/${id}`, {
         text: comments[id],
         userId: user._id,
       },{
@@ -146,7 +146,7 @@ function Viewer() {
                         src={`http://localhost:8000/${video.videoUrl}`}
                         poster={
                           video.thumbnailUrl
-                            ? `http://localhost:8000/${video.thumbnailUrl}`
+                            ? `https://youtube-clone-backend-58sd.onrender.com/${video.thumbnailUrl}`
                             : "https://via.placeholder.com/300x200?text=No+Thumbnail"
                         }
                         controls
@@ -155,7 +155,7 @@ function Viewer() {
                       <img
                         src={
                           video.thumbnailUrl
-                            ? `http://localhost:8000/${video.thumbnailUrl}`
+                            ? `https://youtube-clone-backend-58sd.onrender.com/${video.thumbnailUrl}`
                             : "https://via.placeholder.com/300x200?text=No+Thumbnail"
                         }
                         alt={video.title}
